@@ -538,7 +538,7 @@ async function sendMessage() {
     }
 
     const data = await response.json();
-    const aiMessage = data.choices[0]?.message?.content || 'No response';
+    const aiMessage = data.choices[0]?.message?.content || '🥀';
     if (isTyping) {
       // Remove the typing message
       const messagesDiv = document.getElementById("messages");
@@ -667,3 +667,4 @@ input.addEventListener('keypress', (e) => {
 
 </body>
 </html>
+
