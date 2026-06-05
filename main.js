@@ -4,27 +4,28 @@ const groq = new Groq({
   apiKey: "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",
 });
 
-async function main() {
-  const completion = await groq.chat.completions.create({
-    model: "openai/gpt-oss-20b",
-    messages: [
-      {
-        role: "user",
-        content: "",
-      },
-    ],
-    temperature: 1,
-    max_completion_tokens: 8192,
-    top_p: 1,
-    reasoning_effort: "medium",
-    stream: true,
-    stop: null,
-  });
+from groq import Groq
 
-  for await (const chunk of completion) {
-    console.log(chunk.choices[0]?.delta?.content || "");
-  }
-}
+client = Groq()
+completion = client.chat.completions.create(
+    model="openai/gpt-oss-120b",
+    messages=[
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    temperature=1,
+    max_completion_tokens=8192,
+    top_p=1,
+    reasoning_effort="medium",
+    stream=True,
+    stop=None
+)
+
+for chunk in completion:
+    print(chunk.choices[0].delta.content or "", end="")
+
 
 function addMessage(message, sender) {
   const chatContainer = document.getElementById('chat');
