@@ -70,7 +70,6 @@
 </head>
 </html>
 
-<!-- Marked.js (for Markdown rendering) -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
@@ -386,7 +385,6 @@ function removeFile() {
   fileInput.value = "";
 }
 
-// Handle file selection
 fileInput.addEventListener('change', (e) => {
   const files = Array.from(e.target.files);
   if (files.length === 0) return;
@@ -447,7 +445,6 @@ fileInput.addEventListener('change', (e) => {
   input.placeholder = `Files attached. Type your message...`;
 });
 
-// Initial bot message
 appendMessage("bot", "Hi. I'm Charlie Kirk, your AI tutor. What can I help you with?");
 
 function appendMessage(sender, text) {
@@ -464,7 +461,6 @@ function appendMessage(sender, text) {
   const bubble = document.createElement("div");
   bubble.className = "bubble";
 
-  // Convert markdown to HTML
   bubble.innerHTML = marked.parse(text);
   if (sender === "user") {
     attachedImageUrl.forEach(url => {
@@ -480,7 +476,6 @@ function appendMessage(sender, text) {
 
   messagesDiv.appendChild(msg);
 
-  // Render math equations
   renderMathInElement(bubble, {
     delimiters: [
       {left: "$$", right: "$$", display: true},
@@ -540,7 +535,6 @@ async function sendMessage() {
     const data = await response.json();
     const aiMessage = data.choices[0]?.message?.content || '🥀';
     if (isTyping) {
-      // Remove the typing message
       const messagesDiv = document.getElementById("messages");
       messagesDiv.removeChild(messagesDiv.lastChild);
       isTyping = false;
@@ -557,7 +551,6 @@ async function sendMessage() {
   }
 }
 
-// Allow sending on Enter
 input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     sendMessage();
@@ -591,7 +584,6 @@ input.addEventListener('keypress', (e) => {
   const ratingMessage = document.getElementById('rating-message');
   const ipv4Address = document.getElementById('ipv4Address');
 
-  // Show rating popup after 5 seconds
   setTimeout(() => {
     ratingPopup.style.display = 'block';
     ratingPopup.classList.add('show');
@@ -667,4 +659,3 @@ input.addEventListener('keypress', (e) => {
 
 </body>
 </html>
-
